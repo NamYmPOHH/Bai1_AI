@@ -1,0 +1,17 @@
+Expanded       Adjacency           List Q                   List L
+---------------------------------------------------------------------------
+A              B C D E             A B C D E                B C D E
+B              H                   A B C D E H              C D E H
+C              F                   A B C D E H F            D E H F
+D              F I                 A B C D E H F I          E H F I
+E              I L                 A B C D E H F I L        H F I L
+H              F                   A B C D E H F I L        F I L
+F              K M                 A B C D E H F I L K M    I L K M
+I              M                   A B C D E H F I L K M    L K M
+L              N                   A B C D E H F I L K M N  K M N
+K              G                   A B C D E H F I L K M N GM N G
+M              G                   A B C D E H F I L K M N GN G
+N              M                   A B C D E H F I L K M N GG
+G              Stop                
+
+Path: A -> C -> F -> K -> G
