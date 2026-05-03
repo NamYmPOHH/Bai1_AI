@@ -36,7 +36,7 @@ def bfs(graph, start, goal, output_file):
     Q.append(start)
 
     with open(output_file, "w", encoding="utf-8") as out:
-        out.write(f"{'Expanded':<15}{'Adjacency':<20}{'List Q':<25}{'List L'}\n")
+        out.write(f"{'Expanded':<15}{'Adjacency':<15}{'List Q':<35}{'List L'}\n")
         out.write("-" * 75 + "\n")
 
         while L:
@@ -57,8 +57,8 @@ def bfs(graph, start, goal, output_file):
 
             out.write(
                 f"{u:<15}"
-                f"{' '.join(adj):<20}"
-                f"{' '.join(Q):<25}"
+                f"{' '.join(adj):<15}"
+                f"{' '.join(Q):<35}"
                 f"{' '.join(L)}\n"
             )
 
