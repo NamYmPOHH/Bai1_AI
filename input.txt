@@ -1,14 +1,12 @@
-A: B C D E
-B: H
-H: F
-F: K M
-K: G
-M: G
-C: F
-D: F I
-I: M
-E: I L
-L: N 
-N: M
+A: B C D 
+B: I G
+C: E F
+D: C F
+I: G
+G:
+E: G K
+F: K
+K:
+
 Start: A
 End: G

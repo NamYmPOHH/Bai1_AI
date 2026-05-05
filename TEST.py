@@ -26,24 +26,25 @@ def read_input(filename):
 
 def bfs(graph, start, goal, output_file):
     visited = set()
-    parent = {}
     Q = []          # List Q
     L = deque()     # Queue
 
-    L.append(start)
+    L.append((start, [start]))
     visited.add(start)
-    parent[start] = None
     Q.append(start)
+
+    final_path = []
 
     with open(output_file, "w", encoding="utf-8") as out:
         out.write(f"{'Expanded':<15}{'Adjacency':<15}{'List Q':<35}{'List L'}\n")
         out.write("-" * 75 + "\n")
 
         while L:
-            u = L.popleft()
+            u, path = L.popleft()
 
             if u == goal:
                 out.write(f"{u:<15}{'Stop':<20}\n")
+                final_path = path
                 break
 
             adj = graph.get(u, [])
@@ -51,29 +52,25 @@ def bfs(graph, start, goal, output_file):
             for v in adj:
                 if v not in visited:
                     visited.add(v)
-                    parent[v] = u
-                    L.append(v)
+                    L.append((v, path + [v]))
                     Q.append(v)
+
+            listL = " ".join([item[0] for item in L])
 
             out.write(
                 f"{u:<15}"
                 f"{' '.join(adj):<15}"
                 f"{' '.join(Q):<35}"
-                f"{' '.join(L)}\n"
+                f"{listL}\n"
             )
 
-    # Truy vết đường đi BFS
-    path = []
-    cur = goal
-    while cur:
-        path.append(cur)
-        cur = parent.get(cur)
-    path.reverse()
-
     with open(output_file, "a", encoding="utf-8") as out:
-        out.write("\nPath: " + " -> ".join(path))
+        if final_path:
+            out.write("\nPath: " + " -> ".join(final_path))
+        else:
+            out.write("\nPath: Not Found")
 
-    return path
+    return final_path
 
 
 def draw_graph(graph, bfs_path):
